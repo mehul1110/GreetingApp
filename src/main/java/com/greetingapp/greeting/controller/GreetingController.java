@@ -30,4 +30,11 @@ public class GreetingController {
         return ResponseEntity.ok(
                 greetingService.saveGreeting(firstName, lastName));
     }
+
+    @GetMapping("/greeting/{id}")
+    public ResponseEntity<GreetingEntity> getGreetingById(
+            @PathVariable Long id) {
+        return ResponseEntity.ok(
+                greetingService.findGreetingById(id));
+    }
 }
