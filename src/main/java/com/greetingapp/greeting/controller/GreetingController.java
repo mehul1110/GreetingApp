@@ -1,8 +1,10 @@
 package com.greetingapp.greeting.controller;
 
+import com.greetingapp.greeting.model.GreetingEntity;
 import com.greetingapp.greeting.service.GreetingService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 public class GreetingController {
@@ -22,17 +24,10 @@ public class GreetingController {
     }
 
     @PostMapping("/greeting")
-    public ResponseEntity<String> postGreeting() {
-        return ResponseEntity.ok("{\"message\": \"Hello from POST\"}");
-    }
-
-    @PutMapping("/greeting")
-    public ResponseEntity<String> putGreeting() {
-        return ResponseEntity.ok("{\"message\": \"Hello from PUT\"}");
-    }
-
-    @DeleteMapping("/greeting")
-    public ResponseEntity<String> deleteGreeting() {
-        return ResponseEntity.ok("{\"message\": \"Hello from DELETE\"}");
+    public ResponseEntity<GreetingEntity> createGreeting(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+        return ResponseEntity.ok(
+                greetingService.saveGreeting(firstName, lastName));
     }
 }
