@@ -43,5 +43,13 @@ public class GreetingController {
         return ResponseEntity.ok(
                 greetingService.findAllGreetings());
     }
+
+    @PutMapping("/greeting/{id}")
+    public ResponseEntity<GreetingEntity> updateGreeting(
+            @PathVariable Long id,
+            @RequestParam String message) {
+        return ResponseEntity.ok(
+                greetingService.updateGreeting(id, message));
+    }
 }
 
