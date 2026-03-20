@@ -14,8 +14,11 @@ public class GreetingController {
     }
 
     @GetMapping("/greeting")
-    public ResponseEntity<String> getGreeting() {
-        return ResponseEntity.ok(greetingService.getGreeting());
+    public ResponseEntity<String> getGreeting(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+        return ResponseEntity.ok(
+                greetingService.getGreeting(firstName, lastName));
     }
 
     @PostMapping("/greeting")
