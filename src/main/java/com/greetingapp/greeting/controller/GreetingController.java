@@ -37,4 +37,11 @@ public class GreetingController {
         return ResponseEntity.ok(
                 greetingService.findGreetingById(id));
     }
+
+    @GetMapping("/greetings")
+    public ResponseEntity<List<GreetingEntity>> getAllGreetings() {
+        return ResponseEntity.ok(
+                greetingService.findAllGreetings());
+    }
 }
+
